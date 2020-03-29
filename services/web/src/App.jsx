@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Route, Redirect, Switch, Link } from 'react-router-dom'
 import axios from 'axios'
 
-const API_URL = 'http://www.omdbapi.com/?s=';
+const API_URL = 'http://www.omdbapi.com/?apikey=c0fe7e05&s=';
 
 import './App.css';
 
