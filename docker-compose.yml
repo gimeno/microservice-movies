@@ -31,7 +31,7 @@ services:
       - './services/users:/usr/src/app'
       - './services/users/package.json:/usr/src/package.json'
     ports:
-      - '3000:3000' # expose ports - HOST:CONTAINER
+      - '4000:3000' # expose ports - HOST:CONTAINER
     environment:
       - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_dev
       - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/users_test
@@ -50,7 +50,7 @@ services:
       - './services/movies:/usr/src/app'
       - './services/movies/package.json:/usr/src/package.json'
     ports:
-      - '3001:3000' # expose ports - HOST:CONTAINER
+      - '4001:3000' # expose ports - HOST:CONTAINER
     environment:
       - DATABASE_URL=postgres://postgres:postgres@movies-db:5432/movies_dev
       - DATABASE_TEST_URL=postgres://postgres:postgres@movies-db:5432/movies_test
@@ -72,7 +72,7 @@ services:
       - './services/web:/usr/src/app'
       - '/usr/src/app/node_modules'
     ports:
-      - '3007:3006' # expose ports - HOST:CONTAINER
+      - '4007:3006' # expose ports - HOST:CONTAINER
     environment:
       - NODE_ENV=${NODE_ENV}
     depends_on:
@@ -91,7 +91,7 @@ services:
       - './services/movies/swagger:/usr/src/app'
       - '/usr/src/app/node_modules'
     ports:
-      - '3003:3001' # expose ports - HOST:CONTAINER
+      - '4003:3001' # expose ports - HOST:CONTAINER
     environment:
       - NODE_ENV=${NODE_ENV}
     depends_on:
@@ -102,3 +102,21 @@ services:
     links:
       - users-service
       - movies-service
+
+
+  pgadmin:
+    container_name: pgadmin-microservices
+    image: dpage/pgadmin4
+    ports:
+      - '7777:80' # expose ports - HOST:CONTAINER
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=gimeno05@hotmail.es
+      - PGADMIN_DEFAULT_PASSWORD=pass
+    depends_on:
+      users-db:
+        condition: service_healthy
+      movies-db:
+        condition: service_healthy
+    links:
+      - users-db
+      - movies-db

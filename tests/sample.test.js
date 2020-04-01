@@ -1,6 +1,6 @@
 import { Selector } from 'testcafe';
 
-fixture('/login').page('http://localhost:3007');
+fixture('/login').page('http://localhost:4007');
 
 test(`users should be able to log in and out`, async (t) => {
 
@@ -11,7 +11,7 @@ test(`users should be able to log in and out`, async (t) => {
 
   // login
   await t
-    .navigateTo('http://localhost:3007')
+    .navigateTo('http://localhost:4007')
     .typeText('input[name="username"]', 'michael')
     .typeText('input[name="password"]', 'herman')
     .click(Selector('button[type="submit"]'));

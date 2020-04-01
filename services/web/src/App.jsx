@@ -59,10 +59,10 @@ class App extends Component {
   }
   registerUser (userData, callback) {
     /*
-      why? http://localhost:3000/users/register
+      why? http://localhost:4000/users/register
       why not? http://users-service:3000/users/register
      */
-    return axios.post('http://localhost:3000/users/register', userData)
+    return axios.post('http://localhost:4000/users/register', userData)
     .then((res) => {
       window.localStorage.setItem('authToken', res.data.token)
       window.localStorage.setItem('user', res.data.user)
@@ -78,10 +78,10 @@ class App extends Component {
   }
   loginUser (userData, callback) {
     /*
-      why? http://localhost:3000/users/login
+      why? http://localhost:4000/users/login
       why not? http://users-service:3000/users/login
      */
-    return axios.post('http://localhost:3000/users/login', userData)
+    return axios.post('http://localhost:4000/users/login', userData)
     .then((res) => {
       window.localStorage.setItem('authToken', res.data.token)
       window.localStorage.setItem('user', res.data.user)
@@ -106,7 +106,7 @@ class App extends Component {
   }
   saveMovie (movie) {
     const options = {
-      url: 'http://localhost:3001/movies',
+      url: 'http://localhost:4001/movies',
       method: 'post',
       data: {
         title: movie
@@ -122,7 +122,7 @@ class App extends Component {
   }
   getMovies() {
     const options = {
-      url: 'http://localhost:3001/movies/user',
+      url: 'http://localhost:4001/movies/user',
       method: 'get',
       headers: {
         'Content-Type': 'application/json',

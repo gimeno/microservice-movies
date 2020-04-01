@@ -4,7 +4,7 @@ info:
   description: "Just a simple example"
   version: "1.0.0"
   title: "Movies API"
-host: "localhost:3001"
+host: "localhost:4001"
 basePath: "/movies"
 schemes:
   - "http"
