@@ -1,0 +1,19 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "Contains the TestCafe runner and its tests",
+  "scripts": {
+    "test": "node .",
+    "test-firefox": "node . --browser=firefox",
+    "test-headless": "node . --browser=firefox:headless"
+  },
+  "dependencies": {
+    "fast-glob": "^3.2.2",
+    "fs-extra": "^9.0.0",
+    "json5": "^2.1.2",
+    "minimist": "^1.2.5",
+    "testcafe": "^1.8.3",
+    "testcafe-reporter-html": "^1.4.6",
+    "testcafe-reporter-xunit": "^2.1.0"
+  }
+}

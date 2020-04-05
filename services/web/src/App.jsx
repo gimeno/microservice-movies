@@ -2,7 +2,11 @@ import React, {Component} from 'react'
 import { Route, Redirect, Switch, Link } from 'react-router-dom'
 import axios from 'axios'
 
-const API_URL = 'http://www.omdbapi.com/?apikey=c0fe7e05&s=';
+const API_KEY = process.env.REACT_APP_API_KEY || '';
+const API_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&s=`;
+
+const USERS_SERVICE_URL = process.env.REACT_APP_USERS_SERVICE_URL || 'http://localhost:4000';
+const MOVIES_SERVICE_URL = process.env.REACT_APP_MOVIES_SERVICE_URL || 'http://localhost:4001';
 
 import './App.css';
 
@@ -62,7 +66,7 @@ class App extends Component {
       why? http://localhost:4000/users/register
       why not? http://users-service:3000/users/register
      */
-    return axios.post('http://localhost:4000/users/register', userData)
+    return axios.post(`${USERS_SERVICE_URL}/users/register`, userData)
     .then((res) => {
       window.localStorage.setItem('authToken', res.data.token)
       window.localStorage.setItem('user', res.data.user)
@@ -81,7 +85,7 @@ class App extends Component {
       why? http://localhost:4000/users/login
       why not? http://users-service:3000/users/login
      */
-    return axios.post('http://localhost:4000/users/login', userData)
+    return axios.post(`${USERS_SERVICE_URL}/users/login`, userData)
     .then((res) => {
       window.localStorage.setItem('authToken', res.data.token)
       window.localStorage.setItem('user', res.data.user)
@@ -106,7 +110,7 @@ class App extends Component {
   }
   saveMovie (movie) {
     const options = {
-      url: 'http://localhost:4001/movies',
+      url: `${MOVIES_SERVICE_URL}/movies`,
       method: 'post',
       data: {
         title: movie
@@ -122,7 +126,7 @@ class App extends Component {
   }
   getMovies() {
     const options = {
-      url: 'http://localhost:4001/movies/user',
+      url: `${MOVIES_SERVICE_URL}/movies/user`,
       method: 'get',
       headers: {
         'Content-Type': 'application/json',

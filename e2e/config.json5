@@ -1,0 +1,9 @@
+{
+  concurrency: 1,
+  quarantineMode: true,
+  browser: 'chrome --incognito',
+  reportsFolder: './reports',
+  testFolder: './tests/',
+  selectorTimeout: 4000,
+  portalToTest: 'http://localhost:4007'
+}
