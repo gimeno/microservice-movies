@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import { Route, Redirect, Switch, Link } from 'react-router-dom'
 import axios from 'axios'
 
-const API_URL = 'http://www.omdbapi.com/?&s=';
+const API_KEY = process.env.REACT_APP_API_KEY;
+const API_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&s=`;
 const USERS_SERVICE_URL = process.env.REACT_APP_USERS_SERVICE_URL;
 const MOVIES_SERVICE_URL = process.env.REACT_APP_MOVIES_SERVICE_URL;
 
