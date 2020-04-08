@@ -9,7 +9,7 @@ function createWebTaskDefinition(accountID, region, tag, usersURL, moviesURL) {
           cpu: 300,
           portMappings: [
             {
-              containerPort: 9000,
+              containerPort: 5000,
               hostPort: 0,
               protocol: 'tcp'
             }
