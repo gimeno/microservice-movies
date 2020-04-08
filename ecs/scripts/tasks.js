@@ -16,7 +16,7 @@ const AWS_USERNAME = process.env.AWS_USERNAME;
 const AWS_CONFIG_REGION = process.env.AWS_CONFIG_REGION;
 const SHORT_GIT_HASH = process.env.CIRCLE_SHA1.substring(0, 7);
 const LOAD_BALANCER_DNS = process.env.LOAD_BALANCER_DNS;
-const MOVIES_API_KEY = process.env.MOVIES_API_KEY;
+const REACT_APP_API_KEY = process.env.REACT_APP_API_KEY;
 
 
 // config
@@ -80,7 +80,7 @@ function registerMoviesTD() {
 }
 
 function registerWebTD(usersURL, moviesURL) {
-  const task = createWebTaskDefinition(AWS_ACCOUNT_ID, AWS_CONFIG_REGION, SHORT_GIT_HASH, usersURL, moviesURL, MOVIES_API_KEY);
+  const task = createWebTaskDefinition(AWS_ACCOUNT_ID, AWS_CONFIG_REGION, SHORT_GIT_HASH, usersURL, moviesURL, REACT_APP_API_KEY);
   return registerTaskDef(task)
   .then((res) => {
     console.log('Task Registered!');
