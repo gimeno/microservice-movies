@@ -8,11 +8,11 @@ const AWS_ACCOUNT_ID = process.env.AWS_ACCOUNT_ID;
 const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
 const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 const AWS_USERNAME = process.env.AWS_USERNAME;
-const AWS_CONFIG_REGION = 'us-east-2';
+const AWS_CONFIG_REGION = process.env.AWS_CONFIG_REGION;
 const SHORT_GIT_HASH = process.env.CIRCLE_SHA1.substring(0, 7);
-const VPC_ID='vpc-0f50653941754ecb1';
-const DEFAULT_TARGET_GROUP_ARN = 'arn:aws:elasticloadbalancing:us-east-2:175478040176:targetgroup/review-default/8c2232ed5cb4349a';
-const LOAD_BALANCER_ARN = 'arn:aws:elasticloadbalancing:us-east-2:175478040176:loadbalancer/app/microservicemovies-review/4f0083ca02553244';
+const VPC_ID= process.env.VPC_ID;
+const DEFAULT_TARGET_GROUP_ARN = process.env.DEFAULT_TARGET_GROUP_ARN;
+const LOAD_BALANCER_ARN = process.env.LOAD_BALANCER_ARN;
 
 let USERS_TARGET_GROUP_ARN;
 let MOVIES_TARGET_GROUP_ARN;

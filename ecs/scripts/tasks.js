@@ -13,9 +13,10 @@ const AWS_ACCOUNT_ID = process.env.AWS_ACCOUNT_ID;
 const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
 const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 const AWS_USERNAME = process.env.AWS_USERNAME;
-const AWS_CONFIG_REGION = 'us-east-2';
+const AWS_CONFIG_REGION = process.env.AWS_CONFIG_REGION;
 const SHORT_GIT_HASH = process.env.CIRCLE_SHA1.substring(0, 7);
-const LOAD_BALANCER_DNS = 'microservicemovies-review-761827142.us-east-2.elb.amazonaws.com';
+const LOAD_BALANCER_DNS = process.env.LOAD_BALANCER_DNS;
+const MOVIES_API_KEY = process.env.MOVIES_API_KEY;
 
 
 // config
@@ -79,7 +80,7 @@ function registerMoviesTD() {
 }
 
 function registerWebTD(usersURL, moviesURL) {
-  const task = createWebTaskDefinition(AWS_ACCOUNT_ID, AWS_CONFIG_REGION, SHORT_GIT_HASH, usersURL, moviesURL);
+  const task = createWebTaskDefinition(AWS_ACCOUNT_ID, AWS_CONFIG_REGION, SHORT_GIT_HASH, usersURL, moviesURL, MOVIES_API_KEY);
   return registerTaskDef(task)
   .then((res) => {
     console.log('Task Registered!');
