@@ -32,7 +32,7 @@ services:
     ports:
       - '4000:3000' # expose ports - HOST:CONTAINER
     env_file:
-      - .env
+      - ./.env
     environment:
       - DATABASE_URL=postgres://postgres:postgres@users-db-review:5432/users_dev
       - DATABASE_TEST_URL=postgres://postgres:postgres@users-db-review:5432/users_test
@@ -51,7 +51,7 @@ services:
     ports:
       - '4001:3000' # expose ports - HOST:CONTAINER
     env_file:
-      - .env
+      - ./.env
     environment:
       - DATABASE_URL=postgres://postgres:postgres@movies-db-review:5432/movies_dev
       - DATABASE_TEST_URL=postgres://postgres:postgres@movies-db-review:5432/movies_test
@@ -73,7 +73,7 @@ services:
     ports:
       - '4007:5000' # expose ports - HOST:CONTAINER
     env_file:
-      - .env
+      - ./.env
       - ./services/web/.env
     depends_on:
       users-service-review:
@@ -92,7 +92,7 @@ services:
     ports:
       - '4003:3001' # expose ports - HOST:CONTAINER
     env_file:
-      - .env
+      - ./.env
     depends_on:
       users-service-review:
         condition: service_started
