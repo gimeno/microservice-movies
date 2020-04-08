@@ -31,11 +31,10 @@ services:
       dockerfile: Dockerfile-review
     ports:
       - '4000:3000' # expose ports - HOST:CONTAINER
-    env_file:
-      - ./.env
     environment:
       - DATABASE_URL=postgres://postgres:postgres@users-db-review:5432/users_dev
       - DATABASE_TEST_URL=postgres://postgres:postgres@users-db-review:5432/users_test
+      - NODE_ENV=${NODE_ENV}
       - TOKEN_SECRET=changeme
     depends_on:
       users-db-review:
@@ -50,11 +49,10 @@ services:
       dockerfile: Dockerfile-review
     ports:
       - '4001:3000' # expose ports - HOST:CONTAINER
-    env_file:
-      - ./.env
     environment:
       - DATABASE_URL=postgres://postgres:postgres@movies-db-review:5432/movies_dev
       - DATABASE_TEST_URL=postgres://postgres:postgres@movies-db-review:5432/movies_test
+      - NODE_ENV=${NODE_ENV}
       - TOKEN_SECRET=changeme
     depends_on:
       movies-db-review:
@@ -72,9 +70,10 @@ services:
       dockerfile: Dockerfile-review
     ports:
       - '4007:5000' # expose ports - HOST:CONTAINER
-    env_file:
-      - ./.env
-      - ./services/web/.env
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}
+      - REACT_APP_MOVIES_SERVICE_URL=h${REACT_APP_MOVIES_SERVICE_URL}
     depends_on:
       users-service-review:
         condition: service_started
@@ -91,8 +90,8 @@ services:
       dockerfile: Dockerfile-review
     ports:
       - '4003:3001' # expose ports - HOST:CONTAINER
-    env_file:
-      - ./.env
+    environment:
+      - NODE_ENV=${NODE_ENV}
     depends_on:
       users-service-review:
         condition: service_started
