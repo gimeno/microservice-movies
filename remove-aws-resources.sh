@@ -1,2 +1,2 @@
-node -r doctenv/config ecs/scripts/teardown.js port Commit
-node -r doctenv/config ecs/scripts/remove-images.js
+node -r dotenv/config ecs/scripts/teardown.js port Commit
+node -r dotenv/config ecs/scripts/remove-images.js

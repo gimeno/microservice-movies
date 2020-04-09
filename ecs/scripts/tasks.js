@@ -79,8 +79,8 @@ function registerMoviesTD() {
   });
 }
 
-function registerWebTD(usersURL, moviesURL) {
-  const task = createWebTaskDefinition(AWS_ACCOUNT_ID, AWS_CONFIG_REGION, SHORT_GIT_HASH, usersURL, moviesURL, REACT_APP_API_KEY);
+function registerWebTD(backendURL) {
+  const task = createWebTaskDefinition(AWS_ACCOUNT_ID, AWS_CONFIG_REGION, SHORT_GIT_HASH, backendURL, REACT_APP_API_KEY);
   return registerTaskDef(task)
   .then((res) => {
     console.log('Task Registered!');
@@ -100,10 +100,8 @@ return ensureAuthenticated()
   return port();
 })
 .then((port) => {
-  const usersURL = `${LOAD_BALANCER_DNS}:${port}/users`;
-  const moviesURL = `${LOAD_BALANCER_DNS}:${port}/movies`;
   registerUsersTD();
   registerMoviesTD();
-  registerWebTD(usersURL, moviesURL);
+  registerWebTD(`${LOAD_BALANCER_DNS}:${port}`);
 })
 .catch((err) => { console.log(err); });
