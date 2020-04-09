@@ -7,14 +7,14 @@ WORKDIR /usr/src/app
 # add `/usr/src/app/node_modules/.bin` to $PATH
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
-# Copy files and replace Windows line endings with UNIX ones
-RUN apt-get update && apt-get install -y dos2unix
-COPY . .
-RUN find . -type f -print0 | xargs -0 dos2unix && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
-
-# Install dependencies
+# install and cache app dependencies
+ADD package.json /usr/src/app/package.json
 RUN npm install --silent
 RUN npm install -g serve --silent
 
-# Build app and start server from script
-CMD ["/usr/src/app/run"]
+# add app
+ADD . /usr/src/app
+
+# start app
+RUN chmod +x ./entrypoint.sh
+CMD ["./entrypoint.sh"]
