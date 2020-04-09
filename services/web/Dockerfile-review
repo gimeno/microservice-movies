@@ -4,30 +4,17 @@ FROM node:10.1.0
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 
-# add environment variables
-ARG REACT_APP_USERS_SERVICE_URL
-ARG REACT_APP_MOVIES_SERVICE_URL
-ARG NODE_ENV
-ARG REACT_APP_API_KEY
-ENV REACT_APP_USERS_SERVICE_URL=$REACT_APP_USERS_SERVICE_URL
-ENV REACT_APP_MOVIES_SERVICE_URL=$REACT_APP_MOVIES_SERVICE_URL
-ENV NODE_ENV=$NODE_ENV
-ENV REACT_APP_API_KEY=$REACT_APP_API_KEY
-
-
 # add `/usr/src/app/node_modules/.bin` to $PATH
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
-# install and cache app dependencies
-ADD package.json /usr/src/app/package.json
+# Copy files and replace Windows line endings with UNIX ones
+RUN apt-get update && apt-get install -y dos2unix
+COPY . .
+RUN find . -type f -print0 | xargs -0 dos2unix && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
+
+# Install dependencies
 RUN npm install --silent
 RUN npm install -g serve --silent
 
-# add app
-ADD . /usr/src/app
-
-# build react app
-RUN npm run build
-
-# start app
-CMD ["serve", "-s", "build"]
+# Build app and start server from script
+CMD ["/usr/src/app/run"]
