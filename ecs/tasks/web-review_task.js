@@ -30,6 +30,10 @@ function createWebTaskDefinition(accountID, region, tag, backendURL, apiKey) {
             {
               name: 'REACT_APP_API_KEY',
               value: apiKey
+            },
+            {
+              name: 'REACT_APP_PROTOCOL',
+              value: 'http://'
             }
           ],
           logConfiguration: {

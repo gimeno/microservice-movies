@@ -4,8 +4,9 @@ import axios from 'axios'
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 const API_URL = `http://www.omdbapi.com/?apikey=${API_KEY}&s=`;
-const USERS_SERVICE_URL = process.env.REACT_APP_USERS_SERVICE_URL;
-const MOVIES_SERVICE_URL = process.env.REACT_APP_MOVIES_SERVICE_URL;
+const PROTOCOL = process.env.REACT_APP_PROTOCOL;
+const USERS_SERVICE_URL = `${PROTOCOL}${process.env.REACT_APP_USERS_SERVICE_URL}`;
+const MOVIES_SERVICE_URL = `${PROTOCOL}${process.env.REACT_APP_MOVIES_SERVICE_URL}`;
 
 
 import './App.css';

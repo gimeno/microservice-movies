@@ -75,6 +75,7 @@ services:
       - REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}
       - REACT_APP_MOVIES_SERVICE_URL=${REACT_APP_MOVIES_SERVICE_URL}
       - REACT_APP_API_KEY=${REACT_APP_API_KEY}
+      - REACT_APP_PROTOCOL=${REACT_APP_PROTOCOL}
     depends_on:
       users-service-review:
         condition: service_started
